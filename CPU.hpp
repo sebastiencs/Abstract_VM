@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 06:39:35 2015 chapui_s
-// Last update Thu Feb 19 22:05:23 2015 chapui_s
+// Last update Fri Feb 20 02:19:10 2015 chapui_s
 //
 
 #ifndef CPU_H_
@@ -24,6 +24,8 @@ class		CPU
 {
 private:
   Stack 	*stack;
+  int		isStandarInput;
+  IOperand	*register1, *register2, *register3;
 
   IOperand	*createOperand(eOperandType, const std::string &);
   IOperand	*createInt8(const std::string &);
@@ -33,7 +35,7 @@ private:
   IOperand	*createDouble(const std::string &);
 
 public:
-  CPU(Stack *s);
+  CPU(Stack *, int);
 
   typedef struct	s_ope {
     eOperandType	type;

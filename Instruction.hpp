@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 00:52:37 2015 chapui_s
-// Last update Thu Feb 19 22:08:37 2015 chapui_s
+// Last update Fri Feb 20 01:50:07 2015 chapui_s
 //
 
 #ifndef SYNTAXTREE_H_
@@ -20,6 +20,7 @@ private:
 public:
   Instruction(std::string &i, eOperandType optP, std::string &optN)
     : inst(i), optPrecision(optP), optNumber(optN) {};
+  ~Instruction() {};
   std::string const	&getInstruction() const {return inst;};
   eOperandType const	&getPrecision() const {return optPrecision;};
   std::string const	&getNumber() const {return optNumber;};

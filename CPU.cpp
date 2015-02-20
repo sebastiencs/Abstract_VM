@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Thu Feb 19 15:00:16 2015 chapui_s
-// Last update Thu Feb 19 22:58:00 2015 chapui_s
+// Last update Fri Feb 20 02:22:52 2015 chapui_s
 //
 
 #include "CPU.hpp"
@@ -18,8 +18,9 @@ CPU::t_ope	tabCreate[] = {
   { Double, NULL }
 };
 
-CPU::CPU(Stack *s) {
+CPU::CPU(Stack *s, int isSI) {
   stack = s;
+  isStandarInput = isSI;
   tabCreate[0].create = &CPU::createInt8;
   tabCreate[1].create = &CPU::createInt16;
   tabCreate[2].create = &CPU::createInt32;
@@ -61,23 +62,19 @@ IOperand	*CPU::createOperand(eOperandType type, const std::string &value) {
 }
 
 int		CPU::push(Instruction const *i) {
-  IOperand	*value;
-
-  value = createOperand(i->getPrecision(), i->getNumber());
-  if (value)
-    stack->push(value);
+  register1 = createOperand(i->getPrecision(), i->getNumber());
+  if (register1)
+    stack->push(register1);
   return (0);
 }
 
 int		CPU::assert(Instruction const *i) {
-  IOperand	*tmp;
-
-  tmp = stack->top();
-  if (!tmp)
+  register1 = stack->top();
+  if (!register1)
     throw ExceptionCPU("Assert: no value on stack");
-  if (i->getPrecision() != tmp->getType())
+  if (i->getPrecision() != register1->getType())
     throw ExceptionCPU("Assert: value on stack is different type");
-  if (tmp->toString() != i->getNumber())
+  if (register1->toString() != i->getNumber())
     throw ExceptionCPU("Assert: value on stack is different");
   return (0);
 }
@@ -89,15 +86,14 @@ int		CPU::dump(Instruction const *i) {
 }
 
 int		CPU::print(Instruction const *i) {
-  IOperand	*tmp;
   int		int_tmp;
   char		c;
 
   (void)i;
-  tmp = stack->top();
-  if (!tmp || tmp->getType() != Int8)
+  register1 = stack->top();
+  if (!register1 || register1->getType() != Int8)
     throw ExceptionCPU("print: value on stack is not Int8");
-  std::stringstream(tmp->toString()) >> int_tmp;
+  std::stringstream(register1->toString()) >> int_tmp;
   c = int_tmp;
   std::cout << c << std::endl;
   return (0);
@@ -105,100 +101,98 @@ int		CPU::print(Instruction const *i) {
 
 int		CPU::pop(Instruction const *i) {
   (void)i;
-  if (!stack->top())
+  if (!(register1 = stack->top()))
     throw ExceptionCPU("pop: No value on stack");
+  delete register1;
   stack->pop();
   return (0);
 }
 
 int		CPU::add(Instruction const *i) {
-  IOperand	*result = NULL, *a = NULL, *b = NULL;
-
   (void)i;
-  a = stack->top();
+  register1 = stack->top();
   stack->pop();
-  b = stack->top();
+  register2 = stack->top();
   stack->pop();
-  if (!a || !b)
+  if (!register1 || !register2) {
+    delete register1;
     throw ExceptionCPU("add: There is not 2 values on stack");
-  result = (*a) + (*b);
-  delete a;
-  delete b;
-  stack->push(result);
+  }
+  register3 = (*register1) + (*register2);
+  delete register1;
+  delete register2;
+  stack->push(register3);
   return (0);
 }
 
 int		CPU::sub(Instruction const *i) {
-  IOperand	*result, *a, *b;
-
   (void)i;
-  a = stack->top();
+  register1 = stack->top();
   stack->pop();
-  b = stack->top();
+  register2 = stack->top();
   stack->pop();
-  if (!a || !b)
-    throw ExceptionCPU("add: There is not 2 values on stack");
-  result = (*b) - (*a);
-  delete a;
-  delete b;
-  stack->push(result);
+  if (!register1 || !register2) {
+    delete register1;
+    throw ExceptionCPU("sub: There is not 2 values on stack");
+  }
+  register3 = (*register2) - (*register1);
+  delete register1;
+  delete register2;
+  stack->push(register3);
   return (0);
 }
 
 int		CPU::mul(Instruction const *i) {
-  IOperand	*result, *a, *b;
-
   (void)i;
-  a = stack->top();
+  register1 = stack->top();
   stack->pop();
-  b = stack->top();
+  register2 = stack->top();
   stack->pop();
-  if (!a || !b)
-    throw ExceptionCPU("add: There is not 2 values on stack");
-  result = (*b) * (*a);
-  delete a;
-  delete b;
-  stack->push(result);
+  if (!register1 || !register2) {
+    delete register1;
+    throw ExceptionCPU("mul: There is not 2 values on stack");
+  }
+  register3 = (*register2) * (*register1);
+  delete register1;
+  delete register2;
+  stack->push(register3);
   return (0);
 }
 
 int		CPU::div(Instruction const *i) {
-  IOperand	*result, *a = NULL, *b = NULL;
-
   (void)i;
-  a = stack->top();
+  register1 = stack->top();
   stack->pop();
-  b = stack->top();
+  register2 = stack->top();
   stack->pop();
-  if (!a || !b)
-    throw ExceptionCPU("add: There is not 2 values on stack");
-  result = (*b) / (*a);
-  delete a;
-  delete b;
-  stack->push(result);
-  return (0);
+  if (!register1 || !register2) {
+    delete register1;
+    throw ExceptionCPU("div: There is not 2 values on stack");
+  }
+  register3 = (*register2) / (*register1);
+  delete register1;
+  delete register2;
+  stack->push(register3);
   return (0);
 }
 
 int		CPU::mod(Instruction const *i) {
-  IOperand	*result, *a, *b;
-
   (void)i;
-  a = stack->top();
+  register1 = stack->top();
   stack->pop();
-  b = stack->top();
+  register2 = stack->top();
   stack->pop();
-  if (!a || !b)
-    throw ExceptionCPU("add: There is not 2 values on stack");
-  result = (*b) % (*a);
-  delete a;
-  delete b;
-  stack->push(result);
+  if (!register1 || !register2) {
+    delete register1;
+    throw ExceptionCPU("mod: There is not 2 values on stack");
+  }
+  register3 = (*register2) % (*register1);
+  delete register1;
+  delete register2;
+  stack->push(register3);
   return (0);
 }
 
 int		CPU::exit(Instruction const *i) {
-  (void)i;
-  std::cout << "exit" << std::endl;
-  return (0);
+  return ((i->getInstruction() == "exit" && isStandarInput == 1) ? (0) : (1));
 }

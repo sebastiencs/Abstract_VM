@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:08:40 2015 chapui_s
-// Last update Thu Feb 19 20:08:40 2015 chapui_s
+// Last update Fri Feb 20 01:41:00 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -18,10 +18,12 @@ int		main(int argc, char **argv) {
   std::ifstream	file;
   int		i;
 
-  // if (argc == 1)
-  //   Parser();
-  // else
-  // {
+  if (argc == 1) {
+    AbstractVm avm;
+    avm.Run();
+  }
+  else
+  {
     i = 1;
     while (i < argc) {
       file.open(argv[i]);
@@ -37,6 +39,6 @@ int		main(int argc, char **argv) {
       file.close();
       i += 1;
     }
-  // }
+  }
   return (0);
 }

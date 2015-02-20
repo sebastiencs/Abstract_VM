@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Tue Feb 17 00:42:05 2015 chapui_s
-// Last update Thu Feb 19 22:10:12 2015 chapui_s
+// Last update Fri Feb 20 02:08:08 2015 chapui_s
 //
 
 #ifndef AVM_HPP_
@@ -32,14 +32,14 @@ private:
 public:
   enum TokenClass {
     KEYWORD = 0,
-    PRECISION = 1,
-    INTEGER = 2,
-    FLOAT = 3,
-    END_FILE = 4,
-    OPEN_PAREN = 5,
-    CLOSE_PAREN = 6,
-    NEW_LINE = 7,
-    UNKNOWN = -1
+    PRECISION = 3,
+    INTEGER = 4,
+    FLOAT = 6,
+    END_FILE = 3,
+    OPEN_PAREN = 10,
+    CLOSE_PAREN = 12,
+    NEW_LINE = 1,
+    UNKNOWN = 14
   };
 
   typedef struct		s_reserved {
@@ -54,7 +54,7 @@ public:
 
   typedef t_reserved		Token;
 
-  AbstractVm(std::istream &file);
+  AbstractVm(std::istream &file = std::cin);
   ~AbstractVm();
 
   void		Run();

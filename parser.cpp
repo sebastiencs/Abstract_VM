@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:23:19 2015 chapui_s
-// Last update Thu Feb 19 22:11:09 2015 chapui_s
+// Last update Fri Feb 20 02:08:55 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -53,7 +53,7 @@ Instruction		*Parser::ManageKeyword(AbstractVm::Token &token) {
   key = token.identifier;
   if (token.identifier != table_reserved[9].identifier
       && token.identifier != table_reserved[10].identifier) {
-    if (GetToken().tokenClass != AbstractVm::NEW_LINE)
+    if (!(GetToken().tokenClass & AbstractVm::NEW_LINE))
       throw ExceptionParser(token.identifier.c_str(), line, "New line expected after ");
     return (new Instruction(key, Int8, empty));
   }
@@ -94,8 +94,8 @@ Instruction		*Parser::GetInstruction() {
   case (AbstractVm::END_FILE):
     return (NULL);
   default:
-    std::cerr << "ERROR\n";
-    return (NULL);
+    throw ExceptionParser(token.identifier.c_str(), line,
+			  "Unexpected word ");
   }
   return (NULL);
 }

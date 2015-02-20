@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Tue Feb 17 20:11:52 2015 chapui_s
-// Last update Thu Feb 19 20:33:26 2015 chapui_s
+// Last update Fri Feb 20 02:10:34 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -88,12 +88,13 @@ AbstractVm::Token	Parser::GetToken() {
       throw ExceptionParser(str.c_str(), line, "Unknow word ");
 
     case (COMMENT):
+      str += c;
       c = GetNextChar();
       if (c == ';' && isStandartInput) {
 	str += c;
 	return (CreateToken(AbstractVm::KEYWORD));
       }
-      while (c != '\n')
+      while (c != '\n' && c)
 	c = GetNextChar();
       state = START;
       break;
@@ -134,11 +135,9 @@ AbstractVm::Token	Parser::GetToken() {
       c = GetNextChar();
       if (!isNumber(c))
 	throw ExceptionParser("Invalid negativ number", line);
-      state = (isNumber(c)) ? (NUMBER) : (ERROR);
+      state = NUMBER;
       break;
 
-    case (ERROR):
-      return (CreateToken(AbstractVm::UNKNOWN));
     }
   }
 }

@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 06:45:58 2015 chapui_s
-// Last update Thu Feb 19 23:20:27 2015 chapui_s
+// Last update Fri Feb 20 01:07:41 2015 chapui_s
 //
 
 #ifndef STACK_H_
@@ -25,6 +25,7 @@ public:
   int		pop();
   int		dump() const;
   IOperand	*top() const;
+  void		erase();
 };
 
 #endif // !STACK_H_

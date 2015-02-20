@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:24:00 2015 chapui_s
-// Last update Thu Feb 19 20:35:25 2015 chapui_s
+// Last update Fri Feb 20 01:54:05 2015 chapui_s
 //
 
 #ifndef PARSER_HPP_
@@ -21,8 +21,7 @@
 
 enum State{
   START = 0, WORD = 2, COMMENT = 3, OPEN = 4,
-  NUMBER = 5, CLOSE = 6, NEWLINE = 7, NEG = 8,
-  ERROR = -1
+  NUMBER = 5, CLOSE = 6, NEWLINE = 7, NEG = 8
 };
 
 class		Parser
@@ -56,6 +55,7 @@ public:
   void		Run();
   Instruction	*GetInstruction();
   int		getLine() const;
+  int		getIsStandartInput() const {return isStandartInput;}
 };
 
 #endif // !PARSER_HPP_

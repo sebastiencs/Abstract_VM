@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 06:08:18 2015 chapui_s
-// Last update Fri Feb 20 00:34:37 2015 chapui_s
+// Last update Fri Feb 20 01:58:42 2015 chapui_s
 //
 
 #include "avm.hpp"
@@ -23,6 +23,7 @@ AbstractVm::t_cpu	cpuInstruction[] = {
   { "assert", &CPU::assert },
   { "dump", &CPU::dump },
   { "print", &CPU::print },
+  { ";;", &CPU::exit }
 };
 
 AbstractVm::AbstractVm(std::istream &f)
@@ -31,7 +32,7 @@ AbstractVm::AbstractVm(std::istream &f)
   try {
     parser = new Parser(f);
     stack = new Stack();
-    cpu = new CPU(stack);
+    cpu = new CPU(stack, parser->getIsStandartInput());
   }
   catch (const std::bad_alloc &) {
     delete parser;
@@ -54,13 +55,24 @@ void		AbstractVm::Run() {
     while ((instruction = parser->GetInstruction())) {
       std::cout << instruction->getInstruction() << " line: " << parser->getLine() << std::endl;
       for (i = 0; instruction->getInstruction() != cpuInstruction[i].instStr; ++i);
-      (cpu->*(cpuInstruction[i].inst))(instruction);
+      if (((cpu->*(cpuInstruction[i].inst))(instruction))) {
+	delete instruction;
+	break;
+      }
+      delete instruction;
     }
+    if (parser->getIsStandartInput() == 0 && i != 6)
+      throw ExceptionCPU("Last instruction must be 'exit'");
+    if (parser->getIsStandartInput() == 1 && i != 11)
+      throw ExceptionCPU("Last instruction must be ';;'");
   }
   catch (const ExceptionParser &e) {
     std::cerr << e.what() << std::endl;
   }
   catch (const ExceptionCPU &e) {
+    delete instruction;
+    stack->erase();
     std::cerr << e.what() << " line " << parser->getLine() << std::endl;
   }
+  stack->erase();
 }

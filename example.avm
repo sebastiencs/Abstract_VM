@@ -3,7 +3,6 @@
 ; -------------
 
 push int8(42)
-add
 print
 push int8(70)
 
@@ -26,3 +25,5 @@ pop
 
 
 exit
+
+;;
