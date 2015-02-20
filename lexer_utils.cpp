@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Tue Feb 17 20:14:52 2015 chapui_s
-// Last update Tue Feb 17 20:15:23 2015 chapui_s
+// Last update Fri Feb 20 02:36:02 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -16,12 +16,12 @@ void	Parser::BufferZero(char *buf) {
 }
 
 void	Parser::LoadBuf1() {
-  Parser::BufferZero(buf1);
+  BufferZero(buf1);
   file.read(buf1, 10);
 }
 
 void	Parser::LoadBuf2() {
-  Parser::BufferZero(buf2);
+  BufferZero(buf2);
   file.read(buf2, 10);
 }
 
