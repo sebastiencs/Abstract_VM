@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Thu Feb 19 15:00:16 2015 chapui_s
-// Last update Fri Feb 20 02:22:52 2015 chapui_s
+// Last update Sun Feb 22 19:34:40 2015 denel-_l
 //
 
 #include "CPU.hpp"
@@ -39,19 +39,18 @@ IOperand	*CPU::createInt16(const std::string &s) {
 }
 
 IOperand	*CPU::createInt32(const std::string &s) {
-  (void)s;
-  std::cout << "Create 32" << std::endl;
-  return (NULL);
+  std::cout << "Create Int32 " << s << std::endl;
+  return (new OperandInt32(s));
 }
 
 IOperand	*CPU::createFloat(const std::string &s) {
-  (void)s;
-  return (NULL);
+  std::cout << "Create Float " << s << std::endl;
+  return (new OperandFloat(s));
 }
 
 IOperand	*CPU::createDouble(const std::string &s) {
-  (void)s;
-  return (NULL);
+  std::cout << "Create Double " << s << std::endl;
+  return (new OperandDouble(s));
 }
 
 IOperand	*CPU::createOperand(eOperandType type, const std::string &value) {

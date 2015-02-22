@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 06:39:35 2015 chapui_s
-// Last update Fri Feb 20 02:19:10 2015 chapui_s
+// Last update Sun Feb 22 14:45:45 2015 denel-_l
 //
 
 #ifndef CPU_H_
@@ -17,6 +17,9 @@
 # include "Stack.hpp"
 # include "OperandInt8.hpp"
 # include "OperandInt16.hpp"
+# include "OperandInt32.hpp"
+# include "OperandDouble.hpp"
+# include "OperandFloat.hpp"
 
 class		Stack;
 

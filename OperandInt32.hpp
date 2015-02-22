@@ -1,31 +1,31 @@
 //
-// OperandInt16.hpp for epitech in /home/chapuis_s/rendu/
+// OperandInt32.hpp for Abstract_VM in /home/denel-_l/rendu/git/Abstract_VM
 //
-// Made by chapui_s
-// Login   <chapui_s@epitech.eu>
+// Made by denel-_l
+// Login   <denel-_l@epitech.net>
 //
-// Started on  Thu Feb 19 22:01:50 2015 chapui_s
-// Last update Sun Feb 22 22:05:32 2015 denel-_l
+// Started on  Sun Feb 22 22:05:09 2015 denel-_l
+// Last update Sun Feb 22 22:05:30 2015 denel-_l
 //
 
-#ifndef OPERAND16_H_
-# define OPERAND16_H_
+#ifndef OPERAND32_H_
+# define OPERAND32_H_
 
 # include <iostream>
 # include <sstream>
 # include "avm.hpp"
 # include "ExceptionCPU.hpp"
 
-class			OperandInt16 : public IOperand
+class			OperandInt32 : public IOperand
 {
 private:
   std::string const	str;
-  short			nb;
+  int			nb;
   int			precision;
   eOperandType		type;
 
 public:
-  OperandInt16(std::string const &s);
+  OperandInt32(std::string const &s);
 
   virtual std::string const	&toString() const;
 
@@ -42,4 +42,4 @@ public:
   int			stringToValue(std::string const &) const;
 };
 
-#endif // !OPERAND16_H_
+#endif // !OPERAND32_H_

@@ -1,31 +1,31 @@
 //
-// OperandInt16.hpp for epitech in /home/chapuis_s/rendu/
+// OperandDouble.hpp for Abstract_VM-master in /home/denel-_l/rendu/Abstract_VM-master
 //
-// Made by chapui_s
-// Login   <chapui_s@epitech.eu>
+// Made by denel-_l
+// Login   <denel-_l@epitech.net>
 //
-// Started on  Thu Feb 19 22:01:50 2015 chapui_s
-// Last update Sun Feb 22 22:05:32 2015 denel-_l
+// Started on  Sun Feb 22 14:25:07 2015 denel-_l
+// Last update Sun Feb 22 14:26:34 2015 denel-_l
 //
 
-#ifndef OPERAND16_H_
-# define OPERAND16_H_
+#ifndef OPERANDDOUBLE_H_
+# define OPERANDDOUBLE_H_
 
 # include <iostream>
 # include <sstream>
 # include "avm.hpp"
 # include "ExceptionCPU.hpp"
 
-class			OperandInt16 : public IOperand
+class			OperandDouble : public IOperand
 {
 private:
   std::string const	str;
-  short			nb;
+  double       		nb;
   int			precision;
   eOperandType		type;
 
 public:
-  OperandInt16(std::string const &s);
+  OperandDouble(std::string const &s);
 
   virtual std::string const	&toString() const;
 
@@ -42,4 +42,4 @@ public:
   int			stringToValue(std::string const &) const;
 };
 
-#endif // !OPERAND16_H_
+#endif // !OPERANDDOUBLE_H_

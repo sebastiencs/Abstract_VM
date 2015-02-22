@@ -1,11 +1,11 @@
 ##
 ## Makefile for epitech in /home/chapuis_s/rendu/
-## 
+##
 ## Made by chapui_s
 ## Login   <chapui_s@epitech.eu>
-## 
+##
 ## Started on  Fri Feb 20 02:24:14 2015 chapui_s
-## Last update Fri Feb 20 02:28:32 2015 chapui_s
+## Last update Sun Feb 22 22:03:51 2015 denel-_l
 ##
 
 NAME		= avm
@@ -15,6 +15,9 @@ SRC		= AbstractVm.cpp	\
 		  CPU.cpp		\
 		  lexer.cpp		\
 		  lexer_utils.cpp	\
+		  OperandFloat.cpp	\
+		  OperandDouble.cpp	\
+		  OperandInt32.cpp	\
 		  OperandInt16.cpp	\
 		  OperandInt8.cpp	\
 		  parser.cpp		\
@@ -38,4 +41,3 @@ fclean:		clean
 		$(RM) $(NAME)
 
 re:		fclean all
-
