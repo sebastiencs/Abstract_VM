@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:26:41 2015 denel-_l
-// Last update Sun Feb 22 20:05:03 2015 denel-_l
+// Last update Sun Feb 22 22:09:21 2015 denel-_l
 //
 
 #include "OperandFloat.hpp"
@@ -51,39 +51,39 @@ float			OperandFloat::stringToValue(std::string const &s) const {
 
 IOperand		*OperandFloat::operator+(const IOperand &rhs) const {
   float			result;
-  int			tmp;
+  float			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs + *this);
   tmp = this->nb + stringToValue(rhs.toString());
   result = tmp;
-  if (tmp != result)
+  if (tmp == std::numeric_limits<float>::max() || tmp == std::numeric_limits<float>::min())
     throw ExceptionCPU("Underflow Float + Float");
   return (new OperandFloat(valToString(tmp)));
 }
 
 IOperand		*OperandFloat::operator-(const IOperand &rhs) const {
   float			result;
-  int			tmp;
+  float			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs - *this);
   tmp = this->nb - stringToValue(rhs.toString());
   result = tmp;
-  if (result != tmp)
+  if (tmp == std::numeric_limits<float>::max() || tmp == std::numeric_limits<float>::min())
     throw ExceptionCPU("Underflow Float - Float");
   return (new OperandFloat(valToString(result)));
 }
 
 IOperand		*OperandFloat::operator*(const IOperand &rhs) const {
   float			result;
-  int			tmp;
+  float			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs * *this);
   tmp = stringToValue(rhs.toString()) * this->nb;
   result = tmp;
-  if (tmp != result)
+  if (tmp == std::numeric_limits<float>::max() || tmp == std::numeric_limits<float>::min())
     throw ExceptionCPU("Overflow Float * Float");
   return (new OperandFloat(valToString(tmp)));
 }

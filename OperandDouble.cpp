@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:26:41 2015 denel-_l
-// Last update Sun Feb 22 20:47:51 2015 denel-_l
+// Last update Sun Feb 22 22:10:01 2015 denel-_l
 //
 
 #include "OperandDouble.hpp"
@@ -43,7 +43,7 @@ std::string const	OperandDouble::valToString(int const& n) const {
 
 int			OperandDouble::stringToValue(std::string const &s) const {
   std::stringstream	ss(s);
-  int			val;
+  double			val;
 
   ss >> val;
   return (val);
