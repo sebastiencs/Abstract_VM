@@ -5,18 +5,18 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:26:41 2015 denel-_l
-// Last update Sun Feb 22 22:10:01 2015 denel-_l
+// Last update Sun Feb 22 22:58:45 2015 denel-_l
 //
 
 #include "OperandDouble.hpp"
 #include <limits>
 
 OperandDouble::OperandDouble(std::string const &s) : str(s) {
-  double	tmp;
+  long double	tmp;
 
   std::stringstream(s) >> tmp;
   nb = tmp;
-  if (tmp ==  std::numeric_limits<double>::max() || tmp == std::numeric_limits<double>::min())
+  if (nb != tmp)
     throw ExceptionCPU("Overflow/Underflow on Double creation");
   precision = DOUBLE;
   type = Double;
@@ -34,14 +34,14 @@ eOperandType		OperandDouble::getType() const {
   return (type);
 }
 
-std::string const	OperandDouble::valToString(int const& n) const {
+std::string const	OperandDouble::valToString(double const& n) const {
   std::stringstream	ss;
 
   ss << n;
   return (ss.str());
 }
 
-int			OperandDouble::stringToValue(std::string const &s) const {
+double			OperandDouble::stringToValue(std::string const &s) const {
   std::stringstream	ss(s);
   double			val;
 
@@ -51,39 +51,39 @@ int			OperandDouble::stringToValue(std::string const &s) const {
 
 IOperand		*OperandDouble::operator+(const IOperand &rhs) const {
   double			result;
-  double			tmp;
+  long double			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs + *this);
   tmp = this->nb + stringToValue(rhs.toString());
   result = tmp;
-  if (tmp ==  std::numeric_limits<double>::max() || tmp == std::numeric_limits<double>::min())
+  if (nb != tmp)
     throw ExceptionCPU("Underflow Double + Double");
   return (new OperandDouble(valToString(tmp)));
 }
 
 IOperand		*OperandDouble::operator-(const IOperand &rhs) const {
   double			result;
-  double			tmp;
+  long double			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs - *this);
   tmp = this->nb - stringToValue(rhs.toString());
   result = tmp;
-  if (tmp ==  std::numeric_limits<double>::max() || tmp == std::numeric_limits<double>::min())
+  if (nb != tmp)
     throw ExceptionCPU("Underflow Double - Double");
   return (new OperandDouble(valToString(result)));
 }
 
 IOperand		*OperandDouble::operator*(const IOperand &rhs) const {
   double			result;
-  double			tmp;
+  long double			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs * *this);
   tmp = stringToValue(rhs.toString()) * this->nb;
   result = tmp;
-  if (tmp ==  std::numeric_limits<double>::max() || tmp == std::numeric_limits<double>::min())
+  if (nb != tmp)
     throw ExceptionCPU("Overflow Double * Double");
   return (new OperandDouble(valToString(tmp)));
 }
@@ -106,6 +106,6 @@ IOperand		*OperandDouble::operator%(const IOperand &rhs) const {
     return (rhs % *this);
   if (stringToValue(rhs.toString()) == 0)
     throw ExceptionCPU("Modulo by zero (Double)");
-  //  result = this->nb % stringToValue(rhs.toString());
+  //result = this->nb % stringToValue(rhs.toString());
   return (new OperandDouble(valToString(result)));
 }

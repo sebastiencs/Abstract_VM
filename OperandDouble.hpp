@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:25:07 2015 denel-_l
-// Last update Sun Feb 22 14:26:34 2015 denel-_l
+// Last update Sun Feb 22 22:55:44 2015 denel-_l
 //
 
 #ifndef OPERANDDOUBLE_H_
@@ -38,8 +38,8 @@ public:
   virtual IOperand * operator/(const IOperand &rhs) const;
   virtual IOperand * operator%(const IOperand &rhs) const;
 
-  std::string const	valToString(int const &) const;
-  int			stringToValue(std::string const &) const;
+  std::string const	valToString(double const &) const;
+  double			stringToValue(std::string const &) const;
 };
 
 #endif // !OPERANDDOUBLE_H_

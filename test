@@ -1,5 +1,5 @@
-push double(42.42)
-push double(32.32)
+push float(42.42)
+push float(32.32)
 add
 dump
 exit

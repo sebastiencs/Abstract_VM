@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 22:05:09 2015 denel-_l
-// Last update Sun Feb 22 22:05:30 2015 denel-_l
+// Last update Sun Feb 22 22:51:56 2015 denel-_l
 //
 
 #ifndef OPERAND32_H_
@@ -38,8 +38,8 @@ public:
   virtual IOperand * operator/(const IOperand &rhs) const;
   virtual IOperand * operator%(const IOperand &rhs) const;
 
-  std::string const	valToString(int const &) const;
-  int			stringToValue(std::string const &) const;
+  std::string const	valToString(long const &) const;
+  long			stringToValue(std::string const &) const;
 };
 
 #endif // !OPERAND32_H_

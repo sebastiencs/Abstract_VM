@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:25:07 2015 denel-_l
-// Last update Sun Feb 22 14:53:11 2015 denel-_l
+// Last update Sun Feb 22 22:33:30 2015 denel-_l
 //
 
 #ifndef OPERANDFLOAT_H_
@@ -38,7 +38,7 @@ public:
   virtual IOperand * operator/(const IOperand &rhs) const;
   virtual IOperand * operator%(const IOperand &rhs) const;
 
-  std::string const	valToString(int const &) const;
+  std::string const	valToString(float const &) const;
   float			stringToValue(std::string const &) const;
 };
 

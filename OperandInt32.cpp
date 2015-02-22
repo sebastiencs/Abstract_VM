@@ -5,18 +5,18 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 13:43:34 2015 denel-_l
-// Last update Sun Feb 22 20:47:38 2015 denel-_l
+// Last update Sun Feb 22 22:52:37 2015 denel-_l
 //
 
 #include "OperandInt32.hpp"
 #include <limits>
 
 OperandInt32::OperandInt32(std::string const &s) : str(s) {
-  int	tmp;
+  long	tmp;
 
   std::stringstream(s) >> tmp;
   nb = tmp;
-  if (tmp == std::numeric_limits<int>::max() || tmp == std::numeric_limits<int>::min())
+  if (nb != tmp)
     throw ExceptionCPU("Overflow/Underflow on Int32 creation");
   precision = INT32;
   type = Int32;
@@ -34,16 +34,16 @@ eOperandType		OperandInt32::getType() const {
   return (type);
 }
 
-std::string const	OperandInt32::valToString(int const& n) const {
+std::string const	OperandInt32::valToString(long const& n) const {
   std::stringstream	ss;
 
   ss << n;
   return (ss.str());
 }
 
-int			OperandInt32::stringToValue(std::string const &s) const {
+long			OperandInt32::stringToValue(std::string const &s) const {
   std::stringstream	ss(s);
-  int			val;
+  long			val;
 
   ss >> val;
   return (val);
@@ -51,40 +51,39 @@ int			OperandInt32::stringToValue(std::string const &s) const {
 
 IOperand		*OperandInt32::operator+(const IOperand &rhs) const {
   int			result;
-  int			tmp;
+  long			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs + *this);
   tmp = this->nb + stringToValue(rhs.toString());
-  tmp = this->nb + stringToValue(rhs.toString());
   result = tmp;
-  if (tmp == std::numeric_limits<int>::max() || tmp == std::numeric_limits<int>::min())
+  if (nb != tmp)
     throw ExceptionCPU("Underflow Int32 + Int32");
   return (new OperandInt32(valToString(tmp)));
 }
 
 IOperand		*OperandInt32::operator-(const IOperand &rhs) const {
   int			result;
-  int			tmp;
+  long			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs - *this);
   tmp = this->nb - stringToValue(rhs.toString());
   result = tmp;
-  if (tmp == std::numeric_limits<int>::max() || tmp == std::numeric_limits<int>::min())
+  if (nb != tmp)
     throw ExceptionCPU("Underflow Int32 - Int32");
   return (new OperandInt32(valToString(result)));
 }
 
 IOperand		*OperandInt32::operator*(const IOperand &rhs) const {
   int 			result;
-  int			tmp;
+  long			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs * *this);
   tmp = stringToValue(rhs.toString()) * this->nb;
   result = tmp;
-  if (tmp == std::numeric_limits<int>::max() || tmp == std::numeric_limits<int>::min())
+  if (nb != tmp)
     throw ExceptionCPU("Overflow Int32 * Int32");
   return (new OperandInt32(valToString(tmp)));
 }
