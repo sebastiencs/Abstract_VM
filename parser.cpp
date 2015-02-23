@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:23:19 2015 chapui_s
-// Last update Fri Feb 20 02:08:55 2015 chapui_s
+// Last update Mon Feb 23 01:53:47 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -69,9 +69,10 @@ Instruction		*Parser::ManageKeyword(AbstractVm::Token &token) {
     throw ExceptionParser(token.identifier.c_str(), line, "'(' expected, no ");
 
   token = GetToken();
-  if (token.tokenClass != AbstractVm::INTEGER
-      && token.tokenClass != AbstractVm::FLOAT)
-    throw ExceptionParser(token.identifier.c_str(), line, "number expected, no ");
+  if ((type == Float || type == Double) && token.tokenClass != AbstractVm::FLOAT)
+    throw ExceptionParser(token.identifier.c_str(), line, "floating number expected, no ");
+  else if (type != Float && type != Double && token.tokenClass != AbstractVm::INTEGER)
+    throw ExceptionParser(token.identifier.c_str(), line, "integer number expected, no ");
   number = token.identifier;
 
   if ((token = GetToken()).tokenClass != AbstractVm::CLOSE_PAREN)

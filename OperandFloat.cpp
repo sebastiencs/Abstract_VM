@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:26:41 2015 denel-_l
-// Last update Sun Feb 22 22:58:15 2015 denel-_l
+// Last update Mon Feb 23 01:49:33 2015 chapui_s
 //
 
 #include "OperandFloat.hpp"
@@ -16,7 +16,7 @@ OperandFloat::OperandFloat(std::string const &s) : str(s) {
 
   std::stringstream(s) >> tmp;
   nb = tmp;
-  if (nb != tmp)
+  if (ABS_NB(nb - tmp) > std::numeric_limits<float>::epsilon())
     throw ExceptionCPU("Overflow/Underflow on Float creation");
   precision = FLOAT;
   type = Float;

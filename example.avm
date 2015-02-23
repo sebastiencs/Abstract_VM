@@ -16,9 +16,13 @@ push int8(2)
 
 mul
 
-push double(42.42)
-push int32(42)
-
+push double(424232423432.1)
+;push int32(42)
+push float(42.234243243)
+add
+sub
+mul
+mod
 dump
 
 pop
