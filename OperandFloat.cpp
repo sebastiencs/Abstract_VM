@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:26:41 2015 denel-_l
-// Last update Mon Feb 23 01:49:33 2015 chapui_s
+// Last update Mon Feb 23 14:50:06 2015 denel-_l
 //
 
 #include "OperandFloat.hpp"
@@ -43,53 +43,56 @@ std::string const	OperandFloat::valToString(float const& n) const {
 
 float			OperandFloat::stringToValue(std::string const &s) const {
   std::stringstream	ss(s);
-  float			val;
+  float		val;
 
   ss >> val;
   return (val);
 }
 
 IOperand		*OperandFloat::operator+(const IOperand &rhs) const {
-  float			result;
-  double			tmp;
+  float		result, tmp2;
+  double		tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs + *this);
   tmp = this->nb + stringToValue(rhs.toString());
   result = tmp;
-  if (nb != tmp)
+  tmp2 = result;
+  if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon())
     throw ExceptionCPU("Underflow Float + Float");
   return (new OperandFloat(valToString(tmp)));
 }
 
 IOperand		*OperandFloat::operator-(const IOperand &rhs) const {
-  float			result;
-  double			tmp;
+  float		result, tmp2;
+  double		tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs - *this);
   tmp = this->nb - stringToValue(rhs.toString());
   result = tmp;
-  if (nb != tmp)
+  tmp2 = result;
+  if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon())
     throw ExceptionCPU("Underflow Float - Float");
   return (new OperandFloat(valToString(result)));
 }
 
 IOperand		*OperandFloat::operator*(const IOperand &rhs) const {
-  float			result;
-  double			tmp;
+  float		result, tmp2;
+  double		tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs * *this);
   tmp = stringToValue(rhs.toString()) * this->nb;
   result = tmp;
-  if (nb != tmp)
+  tmp2 = result;
+  if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon())
     throw ExceptionCPU("Overflow Float * Float");
   return (new OperandFloat(valToString(tmp)));
 }
 
 IOperand		*OperandFloat::operator/(const IOperand &rhs) const {
-  float			result;
+  float		result;
 
   if (rhs.getPrecision() > precision)
     return (rhs / *this);
@@ -100,12 +103,12 @@ IOperand		*OperandFloat::operator/(const IOperand &rhs) const {
 }
 
 IOperand		*OperandFloat::operator%(const IOperand &rhs) const {
-  float			result;
+  float		result;
 
   if (rhs.getPrecision() > precision)
     return (rhs % *this);
   if (stringToValue(rhs.toString()) == 0)
     throw ExceptionCPU("Modulo by zero (Float)");
-  //  result = this->nb % stringToValue(rhs.toString());
+  result = std::fmod(this->nb, stringToValue(rhs.toString()));
   return (new OperandFloat(valToString(result)));
 }

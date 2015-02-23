@@ -1,5 +1,5 @@
-push float(42.42)
-push float(32.32)
-add
+push float(42.0)
+push float(0.0)
+mod
 dump
 exit

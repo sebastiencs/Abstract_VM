@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:26:41 2015 denel-_l
-// Last update Mon Feb 23 02:43:08 2015 chapui_s
+// Last update Mon Feb 23 14:50:10 2015 denel-_l
 //
 
 #include "OperandDouble.hpp"
