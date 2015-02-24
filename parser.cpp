@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:23:19 2015 chapui_s
-// Last update Tue Feb 24 18:13:16 2015 chapui_s
+// Last update Tue Feb 24 18:51:52 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -24,8 +24,9 @@ Parser::Parser(std::istream &f)
   }
   index = 0;
   line = 0;
-  LoadBuf1();
   isStandartInput = (f == std::cin) ? (1) :(0);
+  if (!isStandartInput)
+    LoadBuf1();
   precision["int8"] = Int8;
   precision["int16"] = Int16;
   precision["int32"] = Int32;

@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Tue Feb 17 20:11:52 2015 chapui_s
-// Last update Tue Feb 24 17:41:20 2015 chapui_s
+// Last update Tue Feb 24 18:48:45 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -32,15 +32,19 @@ AbstractVm::Token	table_reserved[] = {
 char	Parser::GetNextChar() {
   char	current;
 
-  if (index == SIZE_BUFFER)
-    LoadBuf2();
-  else if (index == SIZE_BUFFER * 2)
-    LoadBuf1();
-  if (index > (SIZE_BUFFER * 2) - 1)
-    index = 0;
-  current = ((index < SIZE_BUFFER) ? (buf1[index]) : (buf2[index - SIZE_BUFFER]));
-  index += 1;
-  return (current);
+  if (isStandartInput)
+    return (readStdin());
+  else {
+    if (index == SIZE_BUFFER)
+      LoadBuf2();
+    else if (index == SIZE_BUFFER * 2)
+      LoadBuf1();
+    if (index > (SIZE_BUFFER * 2) - 1)
+      index = 0;
+    current = ((index < SIZE_BUFFER) ? (buf1[index]) : (buf2[index - SIZE_BUFFER]));
+    index += 1;
+    return (current);
+  }
 }
 
 AbstractVm::Token	Parser::CreateToken(AbstractVm::TokenClass const &classToken) const {

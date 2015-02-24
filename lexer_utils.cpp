@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Tue Feb 17 20:14:52 2015 chapui_s
-// Last update Tue Feb 24 17:41:02 2015 chapui_s
+// Last update Tue Feb 24 19:00:09 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -35,4 +35,20 @@ int	Parser::isNumber(char const &c) const {
 
 int	Parser::isLetter(char const &c) const {
   return ((c >= 'a' && c <= 'z') ? (1) : (0));
+}
+
+char			Parser::readStdin() {
+  static std::string	s;
+  std::string		tmp;
+  static int		i = 0;
+
+  if (!i) {
+    while (std::getline(std::cin, tmp)) {
+      s += tmp;
+      s += '\n';
+      if (tmp == ";;")
+	break;
+    }
+  }
+  return (s[i++]);
 }

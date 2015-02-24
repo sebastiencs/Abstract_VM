@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:24:00 2015 chapui_s
-// Last update Tue Feb 24 18:12:23 2015 chapui_s
+// Last update Tue Feb 24 19:02:15 2015 chapui_s
 //
 
 #ifndef PARSER_HPP_
@@ -17,7 +17,7 @@
 # include "avm.hpp"
 # include "ExceptionParser.hpp"
 
-# define SIZE_BUFFER	(2)
+# define SIZE_BUFFER	(10)
 
 enum State{
   START = 0, WORD = 2, COMMENT = 3, OPEN = 4,
@@ -47,6 +47,7 @@ protected:
   AbstractVm::Token	GetToken();
   int			isInTable(std::string const &s) const;
   Instruction		*ManageKeyword(AbstractVm::Token &);
+  char			readStdin();
 
 public:
   Parser(std::istream &file = std::cin);
