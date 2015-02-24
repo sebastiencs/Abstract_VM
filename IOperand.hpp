@@ -5,17 +5,16 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 06:48:27 2015 chapui_s
-// Last update Thu Feb 19 22:08:01 2015 chapui_s
+// Last update Tue Feb 24 18:10:48 2015 chapui_s
 //
 
 #ifndef IOPERAND_H_
 # define IOPERAND_H_
 
 # include <string>
-//# include "avm.hpp"
 
 enum eOperandType { Int8, Int16, Int32, Float, Double };
-enum eOperandPrecision { INT8 = 8, INT16 = 16, INT32 = 32, FLOAT = 32, DOUBLE = 64 };
+enum eOperandPrecision { INT8 = 8, INT16 = 16, INT32 = 32, FLOAT = 33, DOUBLE = 64 };
 
 class		IOperand
 {

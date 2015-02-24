@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 13:43:34 2015 denel-_l
-// Last update Sun Feb 22 22:52:37 2015 denel-_l
+// Last update Tue Feb 24 18:00:39 2015 chapui_s
 //
 
 #include "OperandInt32.hpp"
@@ -50,41 +50,33 @@ long			OperandInt32::stringToValue(std::string const &s) const {
 }
 
 IOperand		*OperandInt32::operator+(const IOperand &rhs) const {
-  int			result;
   long			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs + *this);
   tmp = this->nb + stringToValue(rhs.toString());
-  result = tmp;
-  if (nb != tmp)
-    throw ExceptionCPU("Underflow Int32 + Int32");
+  if (tmp - this->nb != stringToValue(rhs.toString()))
+    throw ExceptionCPU("Overflow Int32 + Int32");
   return (new OperandInt32(valToString(tmp)));
 }
 
 IOperand		*OperandInt32::operator-(const IOperand &rhs) const {
-  int			result;
   long			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs - *this);
   tmp = this->nb - stringToValue(rhs.toString());
-  result = tmp;
-  if (nb != tmp)
+  if (tmp + this->nb != stringToValue(rhs.toString()))
     throw ExceptionCPU("Underflow Int32 - Int32");
-  return (new OperandInt32(valToString(result)));
+  return (new OperandInt32(valToString(tmp)));
 }
 
 IOperand		*OperandInt32::operator*(const IOperand &rhs) const {
-  int 			result;
   long			tmp;
 
   if (rhs.getPrecision() > precision)
     return (rhs * *this);
   tmp = stringToValue(rhs.toString()) * this->nb;
-  result = tmp;
-  if (nb != tmp)
-    throw ExceptionCPU("Overflow Int32 * Int32");
   return (new OperandInt32(valToString(tmp)));
 }
 

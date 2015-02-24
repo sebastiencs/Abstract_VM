@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 21:33:38 2015 chapui_s
-// Last update Thu Feb 19 22:42:10 2015 chapui_s
+// Last update Tue Feb 24 18:02:25 2015 chapui_s
 //
 
 #include "OperandInt16.hpp"
@@ -57,7 +57,7 @@ IOperand		*OperandInt16::operator+(const IOperand &rhs) const {
   tmp = this->nb + stringToValue(rhs.toString());
   result = tmp;
   if (tmp != result)
-    throw ExceptionCPU("Underflow Int16 + Int16");
+    throw ExceptionCPU("Overflow Int16 + Int16");
   return (new OperandInt16(valToString(tmp)));
 }
 

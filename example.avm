@@ -2,6 +2,10 @@
 ; exemple.avm -
 ; -------------
 
+push int16(-20000)
+push int16(-10000)
+add
+
 push int8(42)
 print
 push int8(70)
@@ -19,6 +23,10 @@ mul
 push double(424232423432.1)
 ;push int32(42)
 push float(42.234243243)
+add
+push int8(1)
+add
+dump
 add
 sub
 mul

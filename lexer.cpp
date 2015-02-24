@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Tue Feb 17 20:11:52 2015 chapui_s
-// Last update Fri Feb 20 02:10:34 2015 chapui_s
+// Last update Tue Feb 24 17:41:20 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -32,18 +32,18 @@ AbstractVm::Token	table_reserved[] = {
 char	Parser::GetNextChar() {
   char	current;
 
-  if (index == 10)
+  if (index == SIZE_BUFFER)
     LoadBuf2();
-  else if (index == 20)
+  else if (index == SIZE_BUFFER * 2)
     LoadBuf1();
-  if (index > 19)
+  if (index > (SIZE_BUFFER * 2) - 1)
     index = 0;
-  current = ((index < 10) ? (buf1[index]) : (buf2[index - 10]));
+  current = ((index < SIZE_BUFFER) ? (buf1[index]) : (buf2[index - SIZE_BUFFER]));
   index += 1;
   return (current);
 }
 
-AbstractVm::Token	Parser::CreateToken(AbstractVm::TokenClass classToken) {
+AbstractVm::Token	Parser::CreateToken(AbstractVm::TokenClass const &classToken) const {
   AbstractVm::Token	token = {classToken, str};
   return (token);
 }
@@ -75,7 +75,7 @@ AbstractVm::Token	Parser::GetToken() {
       else if (c == '-') state = NEG;
       else if (c == '\n') state = NEWLINE;
       else if (c == '\0') return (CreateToken(AbstractVm::END_FILE));
-      else throw ExceptionParser((str += c).c_str(), line, "Unknow character ");
+      else throw ExceptionParser((str += c).c_str(), line, "Unexpected character ");
       break;
 
     case (WORD):

@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 06:08:18 2015 chapui_s
-// Last update Fri Feb 20 01:58:42 2015 chapui_s
+// Last update Tue Feb 24 18:14:52 2015 chapui_s
 //
 
 #include "avm.hpp"
@@ -42,6 +42,7 @@ AbstractVm::AbstractVm(std::istream &f)
 }
 
 AbstractVm::~AbstractVm() {
+  stack->erase();
   delete parser;
   delete stack;
   delete cpu;
@@ -53,7 +54,9 @@ void		AbstractVm::Run() {
 
   try {
     while ((instruction = parser->GetInstruction())) {
+#ifdef DEBUG
       std::cout << instruction->getInstruction() << " line: " << parser->getLine() << std::endl;
+#endif // !DEBUG
       for (i = 0; instruction->getInstruction() != cpuInstruction[i].instStr; ++i);
       if (((cpu->*(cpuInstruction[i].inst))(instruction))) {
 	delete instruction;
@@ -74,5 +77,4 @@ void		AbstractVm::Run() {
     stack->erase();
     std::cerr << e.what() << " line " << parser->getLine() << std::endl;
   }
-  stack->erase();
 }

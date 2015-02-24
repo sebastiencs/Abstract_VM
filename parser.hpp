@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:24:00 2015 chapui_s
-// Last update Fri Feb 20 01:54:05 2015 chapui_s
+// Last update Tue Feb 24 18:12:23 2015 chapui_s
 //
 
 #ifndef PARSER_HPP_
@@ -17,7 +17,7 @@
 # include "avm.hpp"
 # include "ExceptionParser.hpp"
 
-# define SIZE_BUFFER	(10)
+# define SIZE_BUFFER	(2)
 
 enum State{
   START = 0, WORD = 2, COMMENT = 3, OPEN = 4,
@@ -39,7 +39,7 @@ protected:
   void			LoadBuf1();
   void			LoadBuf2();
   void			BufferZero(char *);
-  AbstractVm::Token	CreateToken(AbstractVm::TokenClass);
+  AbstractVm::Token	CreateToken(AbstractVm::TokenClass const &) const;
   char			GetNextChar();
   void			CleanStr();
   int			isNumber(char const &) const;

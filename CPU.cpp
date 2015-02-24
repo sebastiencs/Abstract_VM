@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Thu Feb 19 15:00:16 2015 chapui_s
-// Last update Sun Feb 22 19:34:40 2015 denel-_l
+// Last update Tue Feb 24 18:09:20 2015 chapui_s
 //
 
 #include "CPU.hpp"
@@ -29,27 +29,37 @@ CPU::CPU(Stack *s, int isSI) {
 }
 
 IOperand	*CPU::createInt8(const std::string &s) {
+#ifdef DEBUG
   std::cout << "Create Int8 " << s << std::endl;
+#endif // !DEBUG
   return (new OperandInt8(s));
 }
 
 IOperand	*CPU::createInt16(const std::string &s) {
+#ifdef DEBUG
   std::cout << "Create Int16 " << s << std::endl;
+#endif // !DEBUG
   return (new OperandInt16(s));
 }
 
 IOperand	*CPU::createInt32(const std::string &s) {
+#ifdef DEBUG
   std::cout << "Create Int32 " << s << std::endl;
+#endif // !DEBUG
   return (new OperandInt32(s));
 }
 
 IOperand	*CPU::createFloat(const std::string &s) {
+#ifdef DEBUG
   std::cout << "Create Float " << s << std::endl;
+#endif // !DEBUG
   return (new OperandFloat(s));
 }
 
 IOperand	*CPU::createDouble(const std::string &s) {
+#ifdef DEBUG
   std::cout << "Create Double " << s << std::endl;
+#endif // !DEBUG
   return (new OperandDouble(s));
 }
 
