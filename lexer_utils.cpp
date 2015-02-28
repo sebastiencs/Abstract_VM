@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Tue Feb 17 20:14:52 2015 chapui_s
-// Last update Tue Feb 24 19:00:09 2015 chapui_s
+// Last update Sat Feb 28 18:56:28 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -37,16 +37,24 @@ int	Parser::isLetter(char const &c) const {
   return ((c >= 'a' && c <= 'z') ? (1) : (0));
 }
 
+int	Parser::isOnlySpace(std::string const &s, int const last) const {
+  if (s.find_first_not_of(" \t", 0) != last)
+    return (0);
+  else
+    return (1);
+}
+
 char			Parser::readStdin() {
   static std::string	s;
   std::string		tmp;
-  static int		i = 0;
+  static int		i = 0, occurence;
 
   if (!i) {
     while (std::getline(std::cin, tmp)) {
       s += tmp;
       s += '\n';
-      if (tmp == ";;")
+      if ((occurence = tmp.find(";;")) != std::string::npos
+	  && isOnlySpace(tmp, occurence))
 	break;
     }
   }
