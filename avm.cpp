@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:08:40 2015 chapui_s
-// Last update Tue Feb 24 18:06:11 2015 chapui_s
+// Last update Sat Feb 28 18:05:38 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -15,8 +15,13 @@ int		main(int argc, char **argv) {
   int		i;
 
   if (argc == 1) {
-    AbstractVm avm;
-    avm.Run();
+    try {
+      AbstractVm avm;
+      avm.Run();
+    }
+    catch (const std::exception &e) {
+      std::cerr << e.what() << std::endl;
+    }
   }
   else
   {
@@ -34,6 +39,8 @@ int		main(int argc, char **argv) {
 	  std::cerr << e.what() << std::endl;
 	}
       }
+      else
+	std::cerr << "Can't open file " << argv[i] << std::endl;
       if (argc > 2)
 	std::cout << "===  END FILE:  " << argv[i] << " ===" << std::endl;
       file.close();

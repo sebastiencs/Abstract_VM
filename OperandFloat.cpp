@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:26:41 2015 denel-_l
-// Last update Mon Feb 23 14:50:06 2015 denel-_l
+// Last update Sat Feb 28 18:16:46 2015 chapui_s
 //
 
 #include "OperandFloat.hpp"
@@ -59,7 +59,7 @@ IOperand		*OperandFloat::operator+(const IOperand &rhs) const {
   result = tmp;
   tmp2 = result;
   if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon())
-    throw ExceptionCPU("Underflow Float + Float");
+    throw ExceptionCPU("Overflow Float + Float");
   return (new OperandFloat(valToString(tmp)));
 }
 

@@ -21,6 +21,7 @@ push int8(2)
 mul
 
 push double(424232423432.1)
+assert double(424232423432.1)
 ;push int32(42)
 push float(42.234243243)
 add

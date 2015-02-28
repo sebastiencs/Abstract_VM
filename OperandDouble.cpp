@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:26:41 2015 denel-_l
-// Last update Mon Feb 23 14:50:10 2015 denel-_l
+// Last update Sat Feb 28 18:15:19 2015 chapui_s
 //
 
 #include "OperandDouble.hpp"
@@ -61,7 +61,7 @@ IOperand		*OperandDouble::operator+(const IOperand &rhs) const {
   result = tmp;
   tmp2 = result;
   if (std::fabs(tmp - tmp2) > std::numeric_limits<double>::epsilon())
-    throw ExceptionCPU("Underflow Double + Double");
+    throw ExceptionCPU("Overflow Double + Double");
   return (new OperandDouble(valToString(tmp)));
 }
 

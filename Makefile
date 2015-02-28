@@ -5,7 +5,7 @@
 ## Login   <chapui_s@epitech.eu>
 ##
 ## Started on  Fri Feb 20 02:24:14 2015 chapui_s
-## Last update Tue Feb 24 18:12:06 2015 chapui_s
+## Last update Sat Feb 28 18:24:34 2015 chapui_s
 ##
 
 NAME		= avm
@@ -25,7 +25,7 @@ SRC		= AbstractVm.cpp	\
 
 OBJ		= $(SRC:.cpp=.o)
 
-CC		= clang++
+CC		= g++
 
 RM		= rm -rf
 

@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 06:08:18 2015 chapui_s
-// Last update Tue Feb 24 18:14:52 2015 chapui_s
+// Last update Sat Feb 28 18:01:53 2015 chapui_s
 //
 
 #include "avm.hpp"
@@ -64,17 +64,15 @@ void		AbstractVm::Run() {
       }
       delete instruction;
     }
-    if (parser->getIsStandartInput() == 0 && i != 6)
+    if (!(parser->getIsStandartInput()) && i != 6)
       throw ExceptionCPU("Last instruction must be 'exit'");
-    if (parser->getIsStandartInput() == 1 && i != 11)
+    if (parser->getIsStandartInput() && i != 11)
       throw ExceptionCPU("Last instruction must be ';;'");
   }
   catch (const ExceptionParser &e) {
     std::cerr << e.what() << std::endl;
   }
   catch (const ExceptionCPU &e) {
-    delete instruction;
-    stack->erase();
     std::cerr << e.what() << " line " << parser->getLine() << std::endl;
   }
 }
