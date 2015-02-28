@@ -5,7 +5,7 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 13:43:34 2015 denel-_l
-// Last update Tue Feb 24 18:00:39 2015 chapui_s
+// Last update Sat Feb 28 20:26:31 2015 chapui_s
 //
 
 #include "OperandInt32.hpp"
@@ -66,7 +66,7 @@ IOperand		*OperandInt32::operator-(const IOperand &rhs) const {
   if (rhs.getPrecision() > precision)
     return (rhs - *this);
   tmp = this->nb - stringToValue(rhs.toString());
-  if (tmp + this->nb != stringToValue(rhs.toString()))
+  if (tmp + stringToValue(rhs.toString()) != static_cast<long>(this->nb))
     throw ExceptionCPU("Underflow Int32 - Int32");
   return (new OperandInt32(valToString(tmp)));
 }

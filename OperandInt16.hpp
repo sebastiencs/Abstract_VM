@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Thu Feb 19 22:01:50 2015 chapui_s
-// Last update Sun Feb 22 22:05:32 2015 denel-_l
+// Last update Sun Mar  1 00:32:22 2015 chapui_s
 //
 
 #ifndef OPERAND16_H_

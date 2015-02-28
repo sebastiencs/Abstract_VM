@@ -5,18 +5,22 @@
 // Login   <denel-_l@epitech.net>
 //
 // Started on  Sun Feb 22 14:26:41 2015 denel-_l
-// Last update Sat Feb 28 18:16:46 2015 chapui_s
+// Last update Sat Feb 28 23:55:50 2015 chapui_s
 //
 
 #include "OperandFloat.hpp"
 #include <limits>
 
+#include <stdio.h>
+
 OperandFloat::OperandFloat(std::string const &s) : str(s) {
-  double	tmp;
+  float	tmp;
+  double tmp2;
 
   std::stringstream(s) >> tmp;
-  nb = tmp;
-  if (ABS_NB(nb - tmp) > std::numeric_limits<float>::epsilon())
+  std::stringstream(s) >> tmp2;
+  nb = tmp2;
+  if (std::fabs(nb - tmp) > std::numeric_limits<float>::epsilon())
     throw ExceptionCPU("Overflow/Underflow on Float creation");
   precision = FLOAT;
   type = Float;
@@ -43,14 +47,14 @@ std::string const	OperandFloat::valToString(float const& n) const {
 
 float			OperandFloat::stringToValue(std::string const &s) const {
   std::stringstream	ss(s);
-  float		val;
+  float			val;
 
   ss >> val;
   return (val);
 }
 
 IOperand		*OperandFloat::operator+(const IOperand &rhs) const {
-  float		result, tmp2;
+  float			result, tmp2;
   double		tmp;
 
   if (rhs.getPrecision() > precision)
@@ -58,13 +62,15 @@ IOperand		*OperandFloat::operator+(const IOperand &rhs) const {
   tmp = this->nb + stringToValue(rhs.toString());
   result = tmp;
   tmp2 = result;
-  if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon())
-    throw ExceptionCPU("Overflow Float + Float");
+  if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon()
+      || tmp > std::numeric_limits<float>::max()
+      || tmp < std::numeric_limits<float>::min())
+    throw ExceptionCPU("Overflow/Underflow Float + Float");
   return (new OperandFloat(valToString(tmp)));
 }
 
 IOperand		*OperandFloat::operator-(const IOperand &rhs) const {
-  float		result, tmp2;
+  float			result, tmp2;
   double		tmp;
 
   if (rhs.getPrecision() > precision)
@@ -72,13 +78,15 @@ IOperand		*OperandFloat::operator-(const IOperand &rhs) const {
   tmp = this->nb - stringToValue(rhs.toString());
   result = tmp;
   tmp2 = result;
-  if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon())
-    throw ExceptionCPU("Underflow Float - Float");
+  if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon()
+      || result < std::numeric_limits<float>::min()
+      || result > std::numeric_limits<float>::max())
+    throw ExceptionCPU("Overflow/Underflow Float - Float");
   return (new OperandFloat(valToString(result)));
 }
 
 IOperand		*OperandFloat::operator*(const IOperand &rhs) const {
-  float		result, tmp2;
+  float			result, tmp2;
   double		tmp;
 
   if (rhs.getPrecision() > precision)
@@ -86,13 +94,15 @@ IOperand		*OperandFloat::operator*(const IOperand &rhs) const {
   tmp = stringToValue(rhs.toString()) * this->nb;
   result = tmp;
   tmp2 = result;
-  if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon())
+  if (std::fabs(tmp - tmp2) > std::numeric_limits<float>::epsilon()
+      || tmp > std::numeric_limits<float>::max()
+      || tmp < std::numeric_limits<float>::min())
     throw ExceptionCPU("Overflow Float * Float");
   return (new OperandFloat(valToString(tmp)));
 }
 
 IOperand		*OperandFloat::operator/(const IOperand &rhs) const {
-  float		result;
+  float			result;
 
   if (rhs.getPrecision() > precision)
     return (rhs / *this);
@@ -103,7 +113,7 @@ IOperand		*OperandFloat::operator/(const IOperand &rhs) const {
 }
 
 IOperand		*OperandFloat::operator%(const IOperand &rhs) const {
-  float		result;
+  float			result;
 
   if (rhs.getPrecision() > precision)
     return (rhs % *this);

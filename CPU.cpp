@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Thu Feb 19 15:00:16 2015 chapui_s
-// Last update Tue Feb 24 18:09:20 2015 chapui_s
+// Last update Sat Feb 28 23:23:03 2015 chapui_s
 //
 
 #include "CPU.hpp"
@@ -78,13 +78,26 @@ int		CPU::push(Instruction const *i) {
 }
 
 int		CPU::assert(Instruction const *i) {
+  long		int_tmp1, int_tmp2;
+  double	double_tmp1, double_tmp2;
+
   register1 = stack->top();
   if (!register1)
     throw ExceptionCPU("Assert: no value on stack");
   if (i->getPrecision() != register1->getType())
     throw ExceptionCPU("Assert: value on stack is different type");
-  if (register1->toString() != i->getNumber())
-    throw ExceptionCPU("Assert: value on stack is different");
+  if (i->getPrecision() == Float || i->getPrecision() == Double) {
+    std::stringstream(register1->toString()) >> double_tmp1;
+    std::stringstream(i->getNumber()) >> double_tmp2;
+    if (double_tmp1 != double_tmp2)
+      throw ExceptionCPU("Assert: value on stack is different");
+  }
+  else {
+    std::stringstream(register1->toString()) >> int_tmp1;
+    std::stringstream(i->getNumber()) >> int_tmp2;
+    if (int_tmp1 != int_tmp2)
+      throw ExceptionCPU("Assert: value on stack is different");
+  }
   return (0);
 }
 
