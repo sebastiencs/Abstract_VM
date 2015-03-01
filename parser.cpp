@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:23:19 2015 chapui_s
-// Last update Tue Feb 24 18:51:52 2015 chapui_s
+// Last update Sun Mar  1 05:51:20 2015 chapui_s
 //
 
 #include "parser.hpp"
@@ -78,6 +78,7 @@ Instruction		*Parser::ManageKeyword(AbstractVm::Token &token) {
 
   if ((token = GetToken()).tokenClass != AbstractVm::CLOSE_PAREN)
     throw ExceptionParser(token.identifier.c_str(), line, "')' expected, no ");
+
   if (GetToken().tokenClass != AbstractVm::NEW_LINE)
     throw ExceptionParser(token.identifier.c_str(), line, "New line expected after ");
 
