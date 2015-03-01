@@ -5,7 +5,7 @@
 ## Login   <chapui_s@epitech.eu>
 ##
 ## Started on  Fri Feb 20 02:24:14 2015 chapui_s
-## Last update Sun Mar  1 00:33:11 2015 chapui_s
+## Last update Sun Mar  1 05:42:51 2015 chapui_s
 ##
 
 NAME		= avm
@@ -15,17 +15,16 @@ SRC		= AbstractVm.cpp	\
 		  CPU.cpp		\
 		  lexer.cpp		\
 		  lexer_utils.cpp	\
-		  OperandFloat.cpp	\
-		  OperandDouble.cpp	\
-		  OperandInt32.cpp	\
-		  OperandInt16.cpp	\
-		  OperandInt8.cpp	\
+		  Operands.cpp		\
 		  parser.cpp		\
-		  Stack.cpp
+		  Stack.cpp		\
+		  createOperand.cpp
 
 OBJ		= $(SRC:.cpp=.o)
 
 CC		= g++
+
+CXXFLAGS	+= -Wall -Wextra
 
 RM		= rm -rf
 

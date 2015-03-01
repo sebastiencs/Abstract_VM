@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Tue Feb 17 00:42:05 2015 chapui_s
-// Last update Sat Feb 28 18:06:37 2015 chapui_s
+// Last update Sun Mar  1 02:23:37 2015 chapui_s
 //
 
 #ifndef AVM_HPP_
@@ -15,9 +15,12 @@
 # include <sstream>
 # include <cmath>
 # include "IOperand.hpp"
+# include "createOperand.hpp"
 # include "Instruction.hpp"
 # include "CPU.hpp"
 # include "Stack.hpp"
+# include "ExceptionCPU.hpp"
+# include "Operands.hpp"
 
 # define ABS_NB(x) ((x < 0) ? (-x) : (x))
 

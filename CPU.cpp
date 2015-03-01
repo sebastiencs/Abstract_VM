@@ -5,73 +5,18 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Thu Feb 19 15:00:16 2015 chapui_s
-// Last update Sat Feb 28 23:23:03 2015 chapui_s
+// Last update Sun Mar  1 04:39:12 2015 chapui_s
 //
 
 #include "CPU.hpp"
 
-CPU::t_ope	tabCreate[] = {
-  { Int8, NULL },
-  { Int16, NULL },
-  { Int32, NULL },
-  { Float, NULL },
-  { Double, NULL }
-};
-
 CPU::CPU(Stack *s, int isSI) {
   stack = s;
   isStandarInput = isSI;
-  tabCreate[0].create = &CPU::createInt8;
-  tabCreate[1].create = &CPU::createInt16;
-  tabCreate[2].create = &CPU::createInt32;
-  tabCreate[3].create = &CPU::createFloat;
-  tabCreate[4].create = &CPU::createDouble;
-}
-
-IOperand	*CPU::createInt8(const std::string &s) {
-#ifdef DEBUG
-  std::cout << "Create Int8 " << s << std::endl;
-#endif // !DEBUG
-  return (new OperandInt8(s));
-}
-
-IOperand	*CPU::createInt16(const std::string &s) {
-#ifdef DEBUG
-  std::cout << "Create Int16 " << s << std::endl;
-#endif // !DEBUG
-  return (new OperandInt16(s));
-}
-
-IOperand	*CPU::createInt32(const std::string &s) {
-#ifdef DEBUG
-  std::cout << "Create Int32 " << s << std::endl;
-#endif // !DEBUG
-  return (new OperandInt32(s));
-}
-
-IOperand	*CPU::createFloat(const std::string &s) {
-#ifdef DEBUG
-  std::cout << "Create Float " << s << std::endl;
-#endif // !DEBUG
-  return (new OperandFloat(s));
-}
-
-IOperand	*CPU::createDouble(const std::string &s) {
-#ifdef DEBUG
-  std::cout << "Create Double " << s << std::endl;
-#endif // !DEBUG
-  return (new OperandDouble(s));
-}
-
-IOperand	*CPU::createOperand(eOperandType type, const std::string &value) {
-  int		i;
-
-  for (i = 0; type != tabCreate[i].type; ++i);
-  return ((this->*(tabCreate[i].create))(value));
 }
 
 int		CPU::push(Instruction const *i) {
-  register1 = createOperand(i->getPrecision(), i->getNumber());
+  register1 = CreateOperand::createOperand(i->getPrecision(), i->getNumber());
   if (register1)
     stack->push(register1);
   return (0);

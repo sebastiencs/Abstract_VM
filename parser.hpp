@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Mon Feb 16 03:24:00 2015 chapui_s
-// Last update Sat Feb 28 18:47:00 2015 chapui_s
+// Last update Sun Mar  1 05:43:47 2015 chapui_s
 //
 
 #ifndef PARSER_HPP_
@@ -48,7 +48,7 @@ protected:
   int			isInTable(std::string const &s) const;
   Instruction		*ManageKeyword(AbstractVm::Token &);
   char			readStdin();
-  int			isOnlySpace(std::string const &, int const) const;
+  int			isOnlySpace(std::string const &, size_t const) const;
 
 public:
   Parser(std::istream &file = std::cin);

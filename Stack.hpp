@@ -5,7 +5,7 @@
 // Login   <chapui_s@epitech.eu>
 //
 // Started on  Wed Feb 18 06:45:58 2015 chapui_s
-// Last update Fri Feb 20 01:07:41 2015 chapui_s
+// Last update Sun Mar  1 02:08:18 2015 chapui_s
 //
 
 #ifndef STACK_H_
